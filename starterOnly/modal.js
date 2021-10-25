@@ -31,11 +31,11 @@ function closemodal() {
 
 /*Formulaire*/
 
-let myForm = document.getElementsById('myForm');
+let myForm = document.getElementById('myForm');
 
 
 myForm.addEventListener('submit', function(test) {
-  let myFirst = document.getElementsById('first');
+  let myFirst = document.getElementById('first');
 
   if (myFirst.value.trim() == "") {
     test.preventDefault();
