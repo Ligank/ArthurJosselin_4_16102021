@@ -205,13 +205,12 @@ input {
   outline: none;
 }
 
-input:invalid {
-  border: 2px solid red;
+#error1, #error2, #error3, #error4 {
+  font-size: 17px;
+  text-align: start;
 }
 
-input:valid {
-  border: 2px solid green;
-}
+
 
 .text-control {
   margin: 0;
