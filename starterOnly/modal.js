@@ -35,26 +35,26 @@ let myForm = document.getElementById('myForm');
 
 
 myForm.addEventListener('submit', function(test) {
-  let myFirst = document.getElementById('first');
-  let myRegex = /^[a-zA-Z]+$/;
-  let myRegexMail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+[.]{1}[a-zA-Z0-9-]{2,3}$/;
-  let myRegexBirth = /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/;
-  let myLast = document.getElementById('last');
-  let myEmail = document.getElementById('email');
-  let myBirth = document.getElementById('birthdate');
+  const myFirst = document.getElementById('first');
+  const myRegex = /^[a-zA-Z]+$/;
+  const myRegexMail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+[.]{1}[a-zA-Z0-9-]{2,3}$/;
+  const myLast = document.getElementById('last');
+  const myEmail = document.getElementById('email');
+  const myBirth = document.getElementById('birthdate');
+  const myNumber = document.getElementById('quantity');
+  const checked_Radios = document.querySelector('input[name = "location"]:checked');
+  const checkedbox = document.getElementById('checkbox1');
 
 
   /*Prénom*/
   if (myFirst.value.trim() == "") {
     let myError = document.getElementById("error1");
     myError.innerHTML = "Au moins deux caractères sont requis.";
-    myError.style.color = "red";
     myFirst.style.border = "2px solid red";
     test.preventDefault();
   } else if (myRegex.test(myFirst.value) == false) {
     let myError = document.getElementById("error1");
     myError.innerHTML = "Le prénom ne peut comporter que des lettres et des tirets uniquements.";
-    myError.style.color = "red";
     myFirst.style.border = "2px solid red";
     test.preventDefault();
   } else if (myRegex.test(myFirst.value) == true) {
@@ -67,13 +67,11 @@ myForm.addEventListener('submit', function(test) {
   if (myLast.value.trim() == "") {
     let myError = document.getElementById("error2");
     myError.innerHTML = "Au moins deux caractères sont requis.";
-    myError.style.color = "red";
     myLast.style.border = "2px solid red";
     test.preventDefault();
   } else if (myRegex.test(myLast.value) == false) {
     let myError = document.getElementById("error2");
     myError.innerHTML = "Le prénom ne peut comporter que des lettres et des tirets uniquements.";
-    myError.style.color = "red";
     myLast.style.border = "2px solid red";
     test.preventDefault();
   } else if (myRegex.test(myLast.value) == true) {
@@ -86,13 +84,11 @@ myForm.addEventListener('submit', function(test) {
   if (myEmail.value.trim() == "") {
     let myError = document.getElementById("error3");
     myError.innerHTML = "Veuillez rentrer une adresse E-mail valide (****@***.***).";
-    myError.style.color = "red";
     myEmail.style.border = "2px solid red";
     test.preventDefault();
   } else if (myRegexMail.test(myEmail.value) == false) {
     let myError = document.getElementById("error3");
     myError.innerHTML = "Veuillez rentrer une adresse E-mail valide (****@***.***).";
-    myError.style.color = "red";
     myEmail.style.border = "2px solid red";
     test.preventDefault();
   } else if (myRegexMail.test(myEmail.value) == true) {
@@ -105,22 +101,45 @@ myForm.addEventListener('submit', function(test) {
   if (myBirth.value.trim() == "") {
     let myError = document.getElementById("error4");
     myError.innerHTML = "Veuillez rentrer votre date de naissance.";
-    myError.style.color = "red";
     myBirth.style.border = "2px solid red";
     test.preventDefault();
-  } else if (myRegexBirth.test(myBirth.value) == false) {
-    let myError = document.getElementById("error4");
-    myError.innerHTML = "Veuillez rentrer une date de naissance valide.";
-    myError.style.color = "red";
-    myBirth.style.border = "2px solid red";
-    test.preventDefault();
-  } else if (myRegexBirth.test(myBirth.value) == true) {
+  } else {
     let myError = document.getElementById("error4");
     myError.innerHTML = "";
-    myError.style.color = "green";
     myBirth.style.border = "2px solid green";
   }
-  
+
+  /*Nombre de tournois*/
+  if (myNumber.value.trim() == "") {
+    let myError = document.getElementById("error5");
+    myError.innerHTML = "Veuillez indiquez votre nombre de tournois.";
+    myNumber.style.border = "2px solid red";
+    test.preventDefault();
+  } else {
+    let myError = document.getElementById("error5");
+    myError.innerHTML = "";
+    myNumber.style.border = "2px solid green";
+  }
+
+  /*Villes*/
+  if(checked_Radios != null){
+    let myError = document.getElementById("error6");
+    myError.innerHTML = "";
+    } else {
+    let myError = document.getElementById("error6");
+    myError.innerHTML = "Veuillez choisir une ville.";
+    test.preventDefault();
+    } 
+
+  /*Conditions*/
+  if (checkedbox.checked == false) {
+    let myError = document.getElementById("error7");
+    myError.innerHTML = "Vous devez vérifier que vous acceptez les termes et conditions.";
+    test.preventDefault();
+  } else {
+    let myError = document.getElementById("error7");
+    myError.innerHTML = "";
+    } 
 
 });
 
