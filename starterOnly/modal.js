@@ -12,6 +12,7 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const CloseBtn = document.querySelectorAll(".close")
 const formData = document.querySelectorAll(".formData");
+const validateModal = document.querySelector("#validateUp");
 
 
 // launch modal event
@@ -22,11 +23,13 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
+// close modal form
 CloseBtn.forEach((btn) => btn.addEventListener("click", closemodal));
 
 function closemodal() {
   modalbg.style.display = "none";
 }
+
 
 /*Form*/
 
@@ -44,6 +47,8 @@ const nameFalse = "Le prénom et le nom ne peuvent comporter que des lettres et 
 const red = "2px solid red";
 const green = "2px solid green";
 const mailFalse = "Veuillez rentrer une adresse E-mail valide (****@***.***).";
+const myCheck = document.querySelector("#checkbox1");
+
 /*First Name*/
 function empty1() {
   let myError = document.getElementById("error1");
@@ -178,7 +183,7 @@ myForm.addEventListener('submit', function(submit) {
 
   /*Cities*/
   const checked_Radios = document.querySelector('input[name = "location"]:checked');
-  if(checked_Radios != null){
+  if (checked_Radios != null){
     good6();
     } else {
       empty6();
@@ -193,12 +198,22 @@ myForm.addEventListener('submit', function(submit) {
   } else {
     let myError = document.getElementById("error7");
     myError.innerHTML = "";
-    } 
+    }
 
 });
 
+function validate() {
+  closemodal();
+  validateModal.style.display = "block";
+  setTimeout(closeValidate, 5000)
+};
+
+function closeValidate() {
+  location.reload();
+}
+
 /*First Name change*/
-myFirst.addEventListener('change', function(change) {
+myFirst.addEventListener('change', function() {
   if (myFirst.value.trim() == "") {
     empty1();
   } else if (myRegex.test(myFirst.value) == false) {
@@ -209,7 +224,7 @@ myFirst.addEventListener('change', function(change) {
 });
 
 /*Name change*/
-myLast.addEventListener('change', function(change) {
+myLast.addEventListener('change', function() {
   if (myLast.value.trim() == "") {
     empty2();
   } else if (myRegex.test(myLast.value) == false) {
@@ -220,7 +235,7 @@ myLast.addEventListener('change', function(change) {
 });
 
  /*Email change*/
-myEmail.addEventListener('change', function(change) {
+myEmail.addEventListener('change', function() {
   if (myEmail.value.trim() == "") {
     empty3();
   } else if (myRegexMail.test(myEmail.value) == false) {
@@ -231,7 +246,7 @@ myEmail.addEventListener('change', function(change) {
 });
 
 /*Birthday change*/
-myBirth.addEventListener('change', function(change) {
+myBirth.addEventListener('change', function() {
   if (myBirth.value.trim() == "") {
     empty4();
   } else {
@@ -239,14 +254,38 @@ myBirth.addEventListener('change', function(change) {
   }
 });
 
- /*Number of tournaments*/
-myNumber.addEventListener('change', function(change) {
+ /*Number of tournaments change*/
+myNumber.addEventListener('change', function() {
   if (myNumber.value.trim() == "") {
     empty5();
   } else {
     good5();
   }
 });
+
+
+/*Conditions change*/
+myCheck.addEventListener('change', function() {
+  if (checkedbox.checked == false) {
+    let myError = document.getElementById("error7");
+    myError.innerHTML = "Vous devez vérifier que vous acceptez les termes et conditions.";
+  } else {
+    let myError = document.getElementById("error7");
+    myError.innerHTML = "";
+    }
+});
+
+/*Cities change*/
+let myCity = document.querySelectorAll('input[name = "location"]');
+myCity.addEventListener('click', function() {
+  const checked_Radios = document.querySelector('input[name = "location"]:checked');
+  if (checked_Radios != null){
+    good6();
+    } else {
+    empty6();
+    } 
+});
+  
   
 
   
