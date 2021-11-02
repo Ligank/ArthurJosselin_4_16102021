@@ -10,9 +10,12 @@ function editNav() {
 // DOM Elements
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
-const CloseBtn = document.querySelectorAll(".close")
+const closeBtn = document.querySelectorAll("#close")
 const formData = document.querySelectorAll(".formData");
 const validateModal = document.querySelector("#validateUp");
+const validateBtn = document.querySelectorAll(".btn-close");
+const validateCloseBtn = document.querySelectorAll(".closeValidateBtn");
+
 
 
 // launch modal event
@@ -21,21 +24,35 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
-}
+};
 
 // close modal form
-CloseBtn.forEach((btn) => btn.addEventListener("click", closemodal));
+closeBtn.forEach((btn) => btn.addEventListener("click", closemodal));
 
 function closemodal() {
   modalbg.style.display = "none";
-}
+};
+
+// ValidateModal
+
+function validate() {
+  closemodal();
+  validateModal.style.display = "block";
+};
+
+validateBtn.forEach((btn) => btn.addEventListener("click", closeValidate));
+validateCloseBtn.forEach((btn) => btn.addEventListener("click", closeValidate));
+
+function closeValidate() {
+  location.reload();
+};
 
 
 /*Form*/
 
 const myForm = document.getElementById('myForm');
 const myFirst = document.getElementById('first');
-const myRegex = /^[a-zA-Z]+$/;
+const myRegex = /^[a-zA-Z]+[a-zA-Z]$/;
 const myRegexMail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+[.]{1}[a-zA-Z0-9-]{2,3}$/;
 const myLast = document.getElementById('last');
 const myEmail = document.getElementById('email');
@@ -43,89 +60,89 @@ const myBirth = document.getElementById('birthdate');
 const myNumber = document.getElementById('quantity');
 const checkedbox = document.getElementById('checkbox1');
 const emptyText = "Veuillez remplir le champ.";
-const nameFalse = "Le prénom et le nom ne peuvent comporter que des lettres et des tirets uniquements."
+const nameFalse = "Le prénom et le nom ne peuvent comporter que des lettres et des tirets uniquement et au moins deux caractères."
 const red = "2px solid red";
 const green = "2px solid green";
 const mailFalse = "Veuillez rentrer une adresse E-mail valide (****@***.***).";
 const myCheck = document.querySelector("#checkbox1");
 
 /*First Name*/
-function empty1() {
-  let myError = document.getElementById("error1");
+function emptyFirstName() {
+  let myError = document.getElementById("errorFirstName");
     myError.innerHTML = emptyText;
     myFirst.style.border = red;
 }
-function falseName1() {
-  let myError = document.getElementById("error1");
+function falseFirstName() {
+  let myError = document.getElementById("errorFirstName");
     myError.innerHTML = nameFalse;
     myFirst.style.border = red;
 }
-function good1() {
-  let myError = document.getElementById("error1");
+function goodFirstName() {
+  let myError = document.getElementById("errorFirstName");
     myError.innerHTML = "";
     myFirst.style.border = green;
 }
 /*Name*/
-function empty2() {
-  let myError = document.getElementById("error2");
+function emptyLastName() {
+  let myError = document.getElementById("errorLastName");
     myError.innerHTML = emptyText;
     myLast.style.border = red;
 }
-function falseName2() {
-  let myError = document.getElementById("error2");
+function falseLastName() {
+  let myError = document.getElementById("errorLastName");
     myError.innerHTML = nameFalse;
     myLast.style.border = red;
 }
-function good2() {
-  let myError = document.getElementById("error2");
+function goodLastName() {
+  let myError = document.getElementById("errorLastName");
     myError.innerHTML = "";
     myLast.style.border = green;
 }
 /*Email*/
-function empty3() {
-  let myError = document.getElementById("error3");
+function emptyMail() {
+  let myError = document.getElementById("errorMail");
     myError.innerHTML = mailFalse;
     myEmail.style.border = red;
 }
 function falseMail() {
-  let myError = document.getElementById("error3");
+  let myError = document.getElementById("errorMail");
     myError.innerHTML = mailFalse;
     myEmail.style.border = red;
 }
-function good3() {
-  let myError = document.getElementById("error3");
+function goodMail() {
+  let myError = document.getElementById("errorMail");
     myError.innerHTML = "";
     myEmail.style.border = green;
 }
 /*Birthday*/
-function empty4() {
-  let myError = document.getElementById("error4");
+function emptyBirth() {
+  let myError = document.getElementById("errorBirth");
     myError.innerHTML = "Veuillez rentrer votre date de naissance.";
     myBirth.style.border = red;
 }
-function good4() {
-  let myError = document.getElementById("error4");
+function goodBirth() {
+  let myError = document.getElementById("errorBirth");
     myError.innerHTML = "";
     myBirth.style.border = green;
 }
  /*Number of tournaments*/
-function empty5() {
-  let myError = document.getElementById("error5");
+function emptyTournaments() {
+  let myError = document.getElementById("errorTournaments");
     myError.innerHTML = "Veuillez indiquez votre nombre de tournois.";
     myNumber.style.border = red;
 }
-function good5() {
-  let myError = document.getElementById("error5");
+function goodTournaments() {
+  let myError = document.getElementById("errorTournaments");
     myError.innerHTML = "";
     myNumber.style.border = green;
 }
 /*Cities*/
-function empty6() {
-  let myError = document.getElementById("error6");
+function emptyCities() {
+  let myError = document.getElementById("errorCities");
     myError.innerHTML = "Veuillez choisir une ville.";
 }
-function good6() {
-  let myError = document.getElementById("error6");
+function goodCities() {
+  let myError = document.getElementById("errorCities");
   myError.innerHTML = "";
 }
 
@@ -134,132 +151,124 @@ myForm.addEventListener('submit', function(submit) {
   
   /*First Name*/
   if (myFirst.value.trim() == "") {
-    empty1();
+    emptyFirstName();
     submit.preventDefault();
   } else if (myRegex.test(myFirst.value) == false) {
-    falseName1();
+    falseFirstName();
     submit.preventDefault();
   } else if (myRegex.test(myFirst.value) == true) {
-    good1();
+    goodFirstName();
   }
 
   /*Name*/
   if (myLast.value.trim() == "") {
-    empty2();
+    emptyLastName();
     submit.preventDefault();
   } else if (myRegex.test(myLast.value) == false) {
-    falseName2();
+    falseLastName();
     submit.preventDefault();
   } else if (myRegex.test(myLast.value) == true) {
-    good2();
+    goodLastName();
   }
 
   /*Email*/
   if (myEmail.value.trim() == "") {
-    empty3();
+    emptyMail();
     submit.preventDefault();
   } else if (myRegexMail.test(myEmail.value) == false) {
     falseMail();
     submit.preventDefault();
   } else if (myRegexMail.test(myEmail.value) == true) {
-    good3();
+    goodMail();
   }
 
   /*Birthday*/
   if (myBirth.value.trim() == "") {
-    empty4();
+    emptyBirth();
     submit.preventDefault();
   } else {
-    good4();
+    goodBirth();
   }
 
   /*Number of tournaments*/
   if (myNumber.value.trim() == "") {
-    empty5();
+    emptyTournaments();
     submit.preventDefault();
   } else {
-    good5();
+    goodTournaments();
   }
 
   /*Cities*/
   const checked_Radios = document.querySelector('input[name = "location"]:checked');
   if (checked_Radios != null){
-    good6();
+    goodCities();
     } else {
-      empty6();
+      emptyCities();
       submit.preventDefault();
     } 
 
   /*Conditions*/
   if (checkedbox.checked == false) {
-    let myError = document.getElementById("error7");
+    let myError = document.getElementById("errorCheck");
     myError.innerHTML = "Vous devez vérifier que vous acceptez les termes et conditions.";
     submit.preventDefault();
   } else {
-    let myError = document.getElementById("error7");
+    let myError = document.getElementById("errorCheck");
     myError.innerHTML = "";
     }
 
 });
 
-function validate() {
-  closemodal();
-  validateModal.style.display = "block";
-  setTimeout(closeValidate, 5000)
-};
 
-function closeValidate() {
-  location.reload();
-}
 
 /*First Name change*/
 myFirst.addEventListener('change', function() {
   if (myFirst.value.trim() == "") {
-    empty1();
+    emptyFirstName();
   } else if (myRegex.test(myFirst.value) == false) {
-    falseName1();
+    falseFirstName();
   } else if (myRegex.test(myFirst.value) == true) {
-    good1();
+    goodFirstName();
   }
 });
 
 /*Name change*/
 myLast.addEventListener('change', function() {
   if (myLast.value.trim() == "") {
-    empty2();
+    emptyLastName();
   } else if (myRegex.test(myLast.value) == false) {
-    falseName2();
+    falseLastName();
   } else if (myRegex.test(myLast.value) == true) {
-    good2();
+    goodLastName();
   }
 });
 
  /*Email change*/
 myEmail.addEventListener('change', function() {
   if (myEmail.value.trim() == "") {
-    empty3();
+    emptyMail();
   } else if (myRegexMail.test(myEmail.value) == false) {
     falseMail();
   } else if (myRegexMail.test(myEmail.value) == true) {
-    good3();
+    goodMail();
   }
 });
 
 /*Birthday change*/
 myBirth.addEventListener('change', function() {
   if (myBirth.value.trim() == "") {
-    empty4();
+    emptyBirth();
   } else {
-    good4();
+    goodBirth();
   }
 });
 
  /*Number of tournaments change*/
 myNumber.addEventListener('change', function() {
   if (myNumber.value.trim() == "") {
-    empty5();
+    emptyTournaments();
   } else {
-    good5();
+    goodTournaments();
   }
 });
 
@@ -267,25 +276,15 @@ myNumber.addEventListener('change', function() {
 /*Conditions change*/
 myCheck.addEventListener('change', function() {
   if (checkedbox.checked == false) {
-    let myError = document.getElementById("error7");
+    let myError = document.getElementById("errorCheck");
     myError.innerHTML = "Vous devez vérifier que vous acceptez les termes et conditions.";
   } else {
-    let myError = document.getElementById("error7");
+    let myError = document.getElementById("errorCheck");
     myError.innerHTML = "";
     }
 });
 
-/*Cities change*/
-let myCity = document.querySelectorAll('input[name = "location"]');
-myCity.addEventListener('click', function() {
-  const checked_Radios = document.querySelector('input[name = "location"]:checked');
-  if (checked_Radios != null){
-    good6();
-    } else {
-    empty6();
-    } 
-});
-  
+
   
 
   

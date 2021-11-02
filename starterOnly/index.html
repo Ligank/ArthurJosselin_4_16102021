@@ -51,7 +51,7 @@
 
       <div class="bground">
         <div class="content">
-          <span class="close"></span>
+          <span class="close" id="close"></span>
           <div class="modal-body">
             <form id="myForm" name="reserve" action="javascript:validate()" method="post">
               <div class="formData">
@@ -63,7 +63,7 @@
                   name="first"
                   minlength="2"
                 /><br>
-                <span id="error1"></span>
+                <span id="errorFirstName"></span>
               </div>
               <div
                 class="formData">
@@ -74,7 +74,7 @@
                   id="last"
                   name="last"
                 /><br>
-                <span id="error2"></span>
+                <span id="errorLastName"></span>
               </div>
               <div
                 class="formData">
@@ -85,7 +85,7 @@
                   id="email"
                   name="email"
                 /><br>
-                <span id="error3"></span>
+                <span id="errorMail"></span>
               </div>
               <div
                 class="formData">
@@ -96,13 +96,13 @@
                   id="birthdate"
                   name="birthdate"
                 /><br>
-                <span id="error4"></span>
+                <span id="errorBirth"></span>
               </div>
               <div
                 class="formData">
                 <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
                 <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99" placeholder="0"><br>
-                <span id="error5"></span>
+                <span id="errorTournaments"></span>
               </div>
               <p class="text-label">Quelle ville ?</p>
               <div
@@ -173,7 +173,7 @@
                   <span class="checkbox-icon"></span>
                   Portland</label
                 ><br>
-                <span id="error6"></span>
+                <span id="errorCities"></span>
               </div>
 
               <div
@@ -184,7 +184,7 @@
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
                 <br>
-                <span id="error7"></span>
+                <span id="errorCheck"></span>
                 <input class="checkbox-input" type="checkbox" id="checkbox2" />
                 <label class="checkbox2-label" for="checkbox2">
                   <span class="checkbox-icon"></span>
@@ -204,7 +204,13 @@
 
       <div id="validateUp">
         <div id="validate">
-          <p>Votre inscription a bien été prise en compte.</p>
+          <span class="closeValidateBtn close"></span>
+          <p id="validateText">Votre inscription a bien été prise en compte.</p>
+          <input
+                class="btn-submit button btn-close"
+                type="submit"
+                value="Fermer"
+              />
         </div>
       </div>
     </main>
