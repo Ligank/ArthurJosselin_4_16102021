@@ -52,8 +52,8 @@ function closeValidate() {
 
 const myForm = document.getElementById('myForm');
 const myFirst = document.getElementById('first');
-const myRegex = /^[a-zA-Z]+[a-zA-Z]$/;
-const myRegexMail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+[.]{1}[a-zA-Z0-9-]{2,3}$/;
+const myRegex = /^[A-zÀ-ÿ]+[A-zÀ-ÿ]$/;
+const myRegexMail = /^[A-zÀ-ÿ0-9.!#$%&'*+/=?^_`{|}~-]+@[A-zÀ-ÿ0-9-]+[.]{1}[A-zÀ-ÿ0-9-]{2,3}$/;
 const myLast = document.getElementById('last');
 const myEmail = document.getElementById('email');
 const myBirth = document.getElementById('birthdate');
